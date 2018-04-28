@@ -18,7 +18,7 @@
 
 <!-- Form -->
 <div class="container">
-    <form class="form-horizontl" id="userInput" name="userInput" onsubmit="validateForm();return false">
+    <form class="form-horizontal" id="userInput" name="userInput" onsubmit="validateForm();return false">
 
         <div class="form-group">
             <label for="fname">First Name:</label>
@@ -150,6 +150,7 @@
         var fname = document.getElementById("fname").value;
         console.log(fname);
         var lname = document.getElementById("lname").value;
+        var pnumber = document.getElementById("pnumber").value;
         var unit = document.getElementById("unit").value;
         var streetNo = document.getElementById("streetNo").value;
         var streetName = document.getElementById("streetName").value;
@@ -158,9 +159,9 @@
         var pickupDate = document.getElementById("pickupDate").value;
         var pickupTime = document.getElementById("pickupTime").value;
 
-        var id = fname+lname+pickupDate+pickupTime;
+        var id = fname+lname+(Math.floor(Math.random() * 9999));
 
-        var vars = "id="+id +"&fname=" + fname + "&lname=" + lname + "&unit=" + unit + "&streetNo=" + streetNo + "&streetName=" + streetName + "&suburbPickUp=" + suburbPickUp + "&suburbDest=" + suburbDest + "&pickupDate=" + pickupDate + "&pickupTime=" + pickupTime;
+        var vars = "id="+id +"&fname=" + fname + "&lname=" + lname + "&pnumber=" +pnumber +"&unit=" + unit + "&streetNo=" + streetNo + "&streetName=" + streetName + "&suburbPickUp=" + suburbPickUp + "&suburbDest=" + suburbDest + "&pickupDate=" + pickupDate + "&pickupTime=" + pickupTime;
 
 
         console.log(vars);

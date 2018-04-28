@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cabs Online Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>CabsOnline Admin Portal</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8" style="background-color:lavender;">
+            <h2>Find a booking</h2>
+            <button type="button" class="btn btn-success btn-block" onclick="showTaxi()">Find Taxies</button>
+            </br>
+            <div id = table></div>
+        </div>
+        <div class="col-sm-4" style="background-color: orange;">
+            <h2>Assign a booking</h2>
+            <div>
+            <form class="form" id="userInput" name="userInput" onsubmit="assignTaxi();return false">
+
+                <div class="form-group">
+                    <label for="id">Enter an ID:</label>
+                    <input type="text" class="form-control" id="id" name="id">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                </div>
+            </form>
+                <div id = conf></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function showTaxi() {
+        var xmlhttp = new XMLHttpRequest()
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("table").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","showTaxi.php",true);
+        xmlhttp.send();
+
+    }
+
+    function assignTaxi() {
+        var userIn = document.getElementById("id").value;
+        console.log(userIn);
+        var hr = new XMLHttpRequest();
+        var url = "assignTaxi.php";
+        var vars = "userIn="+userIn;
+
+        console.log(vars);
+        hr.open("POST", url, true);
+        hr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+
+        hr.onreadystatechange = function (ev) {
+            if (hr.readyState == 4 && hr.status == 200) {
+                var returnData = hr.responseText;
+                document.getElementById("conf").innerHTML = returnData;
+            }
+        }
+
+        hr.send(vars);
+
+    }
+
+
+</script>
+</body>
+</html>

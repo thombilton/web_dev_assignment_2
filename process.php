@@ -5,9 +5,13 @@ include "connectDB.php";
 
 echo "working";
 
+date_default_timezone_set("Pacific/Auckland");
+
+
 $id = $_POST['id'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
+$pnumber = $_POST['pnumber'];
 $unit = $_POST['unit'];
 $streetNo = $_POST['streetNo'];
 $streetName = $_POST['streetName'];
@@ -16,7 +20,7 @@ $suburbDest = $_POST['suburbDest'];
 $pickupDate = $_POST['pickupDate'];
 $pickupTime = $_POST['pickupTime'];
 $status = "unassigned";
-$bookingTime = date("h:i:s");
+$bookingTime = date("H:i:s");
 $bookingDate = date("d-m-Y", time());
 
 $sqlString = "INSERT INTO taxi VALUES(";
@@ -39,13 +43,13 @@ if (mysqli_num_rows($querry) == 0) {
         id VARCHAR(100) NOT NULL PRIMARY KEY,
         fname VARCHAR(100) NOT NULL,
         lname VARCHAR(100) NOT NULL,
-        unit VARCHAR(100),
-        streetNo VARCHAR(100) NOT NULL,
+        pnumber VARCHAR(20) NOT NULL,
+        unit INT,
+        streetNo INT NOT NULL,
         streetName VARCHAR(100) NOT NULL,
         suburbPickUp VARCHAR(100) NOT NULL,
         suburbDest VARCHAR(100) NOT NULL,
-        pickupDate VARCHAR(100) NOT NULL,
-        pickupTime VARCHAR(100) NOT NULL,
+        pickupDate DATETIME NOT NULL,
         status VARCHAR(100) NOT NULL,
         bookingDate VARCHAR (100) NOT NULL,
         bookingTime VARCHAR(100) NOT NULL)";
@@ -58,9 +62,15 @@ else{
     debug("No Need to create table");
 }
 
+$day = substr($pickupDate, 0, 2);
+$month = substr($pickupDate, 3, 2);
+$year = substr($pickupDate, 6, 4);
+
+$dateTime = $year  .'-' .$month ."-" .$day ." " .$pickupTime .":00";
 
 
-$sqlString = $sqlString . "'$id', '$fname', '$lname', '$unit', '$streetNo', '$streetName', '$suburbPickUp', '$suburbDest', '$pickupDate', '$pickupTime', '$status', '$bookingDate', '$bookingTime');";
+
+$sqlString = $sqlString . "'$id', '$fname', '$lname', '$pnumber', '$unit', '$streetNo', '$streetName', '$suburbPickUp', '$suburbDest', '$dateTime', '$status', '$bookingDate', '$bookingTime');";
 
 echo ($sqlString);
 mysqli_query($_DBCONNECTION, $sqlString)
