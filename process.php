@@ -5,7 +5,7 @@ include "connectDB.php";
 
 echo "working";
 
-$id = 123456;
+$id = $_POST['id'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $unit = $_POST['unit'];
