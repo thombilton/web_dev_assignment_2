@@ -57,8 +57,7 @@ if (mysqli_num_rows($querry) == 0) {
     mysqli_query($_DBCONNECTION, $querryString)
     or die(debug("Create table not successful"));
     debug("Table Created");
-}
-else{
+} else {
     debug("No Need to create table");
 }
 
@@ -66,21 +65,14 @@ $day = substr($pickupDate, 0, 2);
 $month = substr($pickupDate, 3, 2);
 $year = substr($pickupDate, 6, 4);
 
-$dateTime = $year  .'-' .$month ."-" .$day ." " .$pickupTime .":00";
-
+$dateTime = $year . '-' . $month . "-" . $day . " " . $pickupTime . ":00";
 
 
 $sqlString = $sqlString . "'$id', '$fname', '$lname', '$pnumber', '$unit', '$streetNo', '$streetName', '$suburbPickUp', '$suburbDest', '$dateTime', '$status', '$bookingDate', '$bookingTime');";
 
-echo ($sqlString);
+echo($sqlString);
 mysqli_query($_DBCONNECTION, $sqlString)
 or die(debug("unable to post to db"));
 
 
 echo $fname;
-/**
- * Created by PhpStorm.
- * User: Thom
- * Date: 28/04/18
- * Time: 1:16 PM
- */

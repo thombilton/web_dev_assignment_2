@@ -23,9 +23,9 @@ or die(debug("unable to reach table"));
 
 date_default_timezone_set("Pacific/Auckland");
 
-$currentDateTime = date("Y-m-d H:i").":00";
+$currentDateTime = date("Y-m-d H:i") . ":00";
 debug($currentDateTime);
-$newDateTime = date("Y-m-d H:i", strtotime('+2 hours')) .":00";
+$newDateTime = date("Y-m-d H:i", strtotime('+2 hours')) . ":00";
 debug($newDateTime);
 
 $query = "SELECT * FROM taxi WHERE pickupDate BETWEEN '$currentDateTime' AND '$newDateTime' AND status='unassigned'";
@@ -34,7 +34,7 @@ $results = mysqli_query($_DBCONNECTION, $query);
 
 debug(mysqli_num_rows($results));
 
-if(mysqli_num_rows($results)!= 0) {
+if (mysqli_num_rows($results) != 0) {
 
     echo "<div class='table-responsive'>";
     echo "<table class='table'>";
@@ -52,8 +52,7 @@ if(mysqli_num_rows($results)!= 0) {
     }
     echo "</table>";
     echo "</div>";
-}
-else{
+} else {
     echo "There are no bookings Available";
 }
 

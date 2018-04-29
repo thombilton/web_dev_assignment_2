@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 
@@ -14,41 +16,42 @@
     <h1>CabsOnline Admin Portal</h1>
     <p>Assign bookings here!</p>
 </div>
-
-<div class = "container">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="booking.html">Book A Taxi</a></li>
-                <li class="active"><a href="admin.html">Taxi Admin</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a href="booking.html">Book A Taxi</a></li>
+                    <li class="active"><a href="admin.html">Taxi Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-8" style="background-color:lavender;">
             <h2>Find a booking</h2>
-            <button type="button" class="btn btn-success btn-block" onclick="showTaxi()">Find Taxies</button>
+            <button type="button" class="btn btn-success btn-block" onclick="showTaxi()">Show Pickup Requests</button>
             </br>
-            <div id = table></div>
+            <div id=table></div>
+            </br>
         </div>
         <div class="col-sm-4" style="background-color: orange;">
             <h2>Assign a booking</h2>
             <div>
-            <form class="form" id="userInput" name="userInput" onsubmit="assignTaxi();return false">
+                <form class="form" id="userInput" name="userInput" onsubmit="assignTaxi();return false">
 
-                <div class="form-group">
-                    <label for="id">Enter an ID:</label>
-                    <input type="text" class="form-control" id="id" name="id">
-                </div>
+                    <div class="form-group">
+                        <label for="id">Enter an ID:</label>
+                        <input type="text" class="form-control" id="id" name="id" required>
+                    </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-block">Submit</button>
-                </div>
-            </form>
-                <div id = conf></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Assign Taxi</button>
+                    </div>
+                </form>
+                <div id=conf></div>
+                </br>
             </div>
 
         </div>
@@ -60,12 +63,12 @@
     function showTaxi() {
         var xmlhttp = new XMLHttpRequest()
 
-        xmlhttp.onreadystatechange = function() {
+        xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("table").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","showTaxi.php",true);
+        xmlhttp.open("GET", "showTaxi.php", true);
         xmlhttp.send();
 
     }
@@ -75,7 +78,7 @@
         console.log(userIn);
         var hr = new XMLHttpRequest();
         var url = "assignTaxi.php";
-        var vars = "userIn="+userIn;
+        var vars = "userIn=" + userIn;
 
         console.log(vars);
         hr.open("POST", url, true);

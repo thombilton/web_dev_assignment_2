@@ -16,7 +16,7 @@ $querryString = "SELECT * FROM taxi WHERE id = '$userIn' AND status = 'unassigne
 $querry = mysqli_query($_DBCONNECTION, $querryString)
 or die (debug("Could not complete querry"));
 
-if(mysqli_num_rows($querry) == 1){
+if (mysqli_num_rows($querry) == 1) {
     $querryString = "UPDATE taxi SET status = 'assigned' WHERE id = '$userIn'";
     $querry = mysqli_query($_DBCONNECTION, $querryString)
     or die (debug("Could not complete querry"));
@@ -24,7 +24,6 @@ if(mysqli_num_rows($querry) == 1){
     echo 'The booking request ';
     echo $userIn;
     echo " has been properly assigned";
-}
-else{
+} else {
     echo "There are no bookings with that reference or this reference is already assigned";
 }
