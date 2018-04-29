@@ -1,0 +1,17 @@
+Below is the SQL command for creating the table.
+The php file process.php will run this command if the user goes to book a taxi the table does not exist.
+
+CREATE TABLE taxi (
+        id VARCHAR(100) NOT NULL PRIMARY KEY,
+        fname VARCHAR(100) NOT NULL,
+        lname VARCHAR(100) NOT NULL,
+        pnumber VARCHAR(20) NOT NULL,
+        unit INT,
+        streetNo INT NOT NULL,
+        streetName VARCHAR(100) NOT NULL,
+        suburbPickUp VARCHAR(100) NOT NULL,
+        suburbDest VARCHAR(100) NOT NULL,
+        pickupDate DATETIME NOT NULL,
+        status VARCHAR(100) NOT NULL,
+        bookingDate VARCHAR (100) NOT NULL,
+        bookingTime VARCHAR(100) NOT NULL)"
