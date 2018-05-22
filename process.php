@@ -1,7 +1,7 @@
 <?php
 
 include "debug.php";
-include "connectDB.php";
+include('../../private/connectDB.php');
 
 echo "working";
 

@@ -1,6 +1,6 @@
 <?php
 include "debug.php";
-include "connectDB.php";
+include('../../private/connectDB.php');
 
 $userIn = $_POST['userIn'];
 //Conects to the database using the strings stored in private/connectDB.php

@@ -13,7 +13,7 @@
 <?php
 
 include "debug.php";
-include "connectDB.php";
+include('../../private/connectDB.php');
 
 $_DBCONNECTION = mysqli_connect("$dbAddr", "$dbUser", "$dbPw", "$dbName")
 or die(debug("unable to connect"));
