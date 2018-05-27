@@ -3,7 +3,6 @@ currentDate();
 currentTime();
 
 
-
 function currentDate() {
 
     var today = new Date();
@@ -29,9 +28,12 @@ function currentDate() {
 function currentTime() {
 
     var today = new Date();
+    console.log(today);
 
     var hh = today.getHours();
-    var mm = today.getHours();
+    var mm = today.getMinutes();
+    console.log(hh);
+    console.log(mm);
 
     if (hh < 10) {
         hh = '0' + hh;
@@ -41,7 +43,7 @@ function currentTime() {
         mm = '0' + mm;
     }
 
-    today = hh +':' +mm;
+    today = hh + ':' + mm;
     console.log(today);
 
     var timeInput = document.getElementById("pickupTime");
