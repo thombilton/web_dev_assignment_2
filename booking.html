@@ -89,61 +89,6 @@
     <div id="result"></div>
 </div>
 
-
-<script type="text/javascript">
-
-    currentDate();
-    currentTime();
-
-
-
-    function currentDate() {
-
-        var today = new Date();
-
-        var dd = today.getDate();
-
-        var mm = today.getMonth() + 1;
-        var yyyy = today.getFullYear();
-        if (dd < 10) {
-            dd = '0' + dd;
-        }
-
-        if (mm < 10) {
-            mm = '0' + mm;
-        }
-
-        today = yyyy + '-' + mm + '-' + dd;
-
-        var dateInput = document.getElementById("pickupDate");
-        dateInput.value = today;
-    }
-
-    function currentTime() {
-
-        var today = new Date();
-
-        var hh = today.getHours();
-        var mm = today.getHours();
-
-        if (hh < 10) {
-            hh = '0' + hh;
-        }
-
-        if (mm < 10) {
-            mm = '0' + mm;
-        }
-
-        today = hh +':' +mm;
-        console.log(today);
-
-        var timeInput = document.getElementById("pickupTime");
-        timeInput.value = today;
-
-    }
-
-</script>
-
 <!-- Modal -->
 <div id="conf" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -166,96 +111,11 @@
 </div>
 
 <!-- Javascript -->
-<script type="text/javascript">
-
-    function openModal() {
-        $("#conf").modal();
-    }
-
-    function validateForm() {
-
-        var pickupDate = document.getElementById("pickupDate").value;
-        console.log(pickupDate);
-        var pickupTime = document.getElementById("pickupTime").value;
-        var userDay = pickupDate.substring(8);
-        console.log(userDay);
-        var userMon = pickupDate.substring(5, 7);
-        console.log(userMon);
-
-        var userYr = pickupDate.substring(0, 4);
-        console.log(userYr);
-
-        var userHr = pickupTime.substring(0, 2);
-        var userMin = pickupTime.substring(3);
-
-        var myDate = new Date(userYr, userMon - 1, userDay, userHr, userMin);
-
-
-        var todaytemp = new Date();
-        var today = new Date(todaytemp.getFullYear(), todaytemp.getMonth(), todaytemp.getDate(), todaytemp.getHours(), todaytemp.getMinutes(), 0);
-        console.log(today);
-        console.log(myDate);
-
-        if (myDate > today || myDate == today) {
-            post();
-            openModal();
-            return true;
-        }
-
-        else {
-            alert("Please ensure your pickup date is not a date that has already been");
-            return false;
-
-        }
-
-    }
-
-
-    function post() {
-
-        var hr = new XMLHttpRequest();
-
-        var url = "process.php";
-        var fname = document.getElementById("fname").value;
-        console.log(fname);
-        var lname = document.getElementById("lname").value;
-        var pnumber = document.getElementById("pnumber").value;
-        var unit = document.getElementById("unit").value;
-        var streetNo = document.getElementById("streetNo").value;
-        var streetName = document.getElementById("streetName").value;
-        var suburbPickUp = document.getElementById("suburbPickUp").value;
-        var suburbDest = document.getElementById("suburbDest").value;
-        var pickupDate = document.getElementById("pickupDate").value;
-        var pickupTime = document.getElementById("pickupTime").value;
-
-        var id = fname + lname + (Math.floor(Math.random() * 9999));
-
-        var vars = "id=" + id + "&fname=" + fname + "&lname=" + lname + "&pnumber=" + pnumber + "&unit=" + unit + "&streetNo=" + streetNo + "&streetName=" + streetName + "&suburbPickUp=" + suburbPickUp + "&suburbDest=" + suburbDest + "&pickupDate=" + pickupDate + "&pickupTime=" + pickupTime;
-
-
-        console.log(vars);
-        hr.open("POST", url, true);
-        hr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-
-        hr.onreadystatechange = function (ev) {
-            if (hr.readyState == 4 && hr.status == 200) {
-                var returnData = hr.responseText;
-                document.getElementById("result").innerHTML = returnData;
-            }
-        };
-
-        hr.send(vars);
-        document.getElementById("result").innerHTML = "processing...";
-
-        var successMessage = "Thank you! Your booking reference number is " + id + ". You will be picked up in front of your provided address at: " + pickupTime + " on " + pickupDate + ".";
-
-        document.getElementById("successMessage").innerText = successMessage;
-    }
-
-
-</script>
+<script type="text/javascript" src="booking.js"></script>
 
 
 </body>
+<footer>
+    <script type="text/javascript" src="setTimeDate.js"></script>
+</footer>
 </html>
