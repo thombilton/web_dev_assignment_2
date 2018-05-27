@@ -61,9 +61,9 @@ if (mysqli_num_rows($querry) == 0) {
     debug("No Need to create table");
 }
 
-$day = substr($pickupDate, 0, 2);
-$month = substr($pickupDate, 3, 2);
-$year = substr($pickupDate, 6, 4);
+$day = substr($pickupDate, 8, 2);
+$month = substr($pickupDate, 5, 2);
+$year = substr($pickupDate, 0, 4);
 
 $dateTime = $year . '-' . $month . "-" . $day . " " . $pickupTime . ":00";
 
