@@ -1,4 +1,3 @@
-
 function openModal() {
     $("#conf").modal();
 }
@@ -63,7 +62,9 @@ function post() {
 
     var vars = "id=" + id + "&fname=" + fname + "&lname=" + lname + "&pnumber=" + pnumber + "&unit=" + unit + "&streetNo=" + streetNo + "&streetName=" + streetName + "&suburbPickUp=" + suburbPickUp + "&suburbDest=" + suburbDest + "&pickupDate=" + pickupDate + "&pickupTime=" + pickupTime;
 
+    var returnData = null;
 
+    var successMessage = "";
     console.log(vars);
     hr.open("POST", url, true);
     hr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -71,14 +72,15 @@ function post() {
 
     hr.onreadystatechange = function (ev) {
         if (hr.readyState == 4 && hr.status == 200) {
-            var returnData = hr.responseText;
+            returnData = hr.responseText;
+            //alert(hr.responseText);
+            successMessage = "Thank you! Your booking reference number is " + hr.responseText + ". You will be picked up in front of your provided address at: " + pickupTime + " on " + pickupDate + ".";
+            document.getElementById("successMessage").innerText = successMessage;
         }
+
     };
 
     hr.send(vars);
 
-    var successMessage = "Thank you! Your booking reference number is " + id + ". You will be picked up in front of your provided address at: " + pickupTime + " on " + pickupDate + ".";
-
-    document.getElementById("successMessage").innerText = successMessage;
 }
 

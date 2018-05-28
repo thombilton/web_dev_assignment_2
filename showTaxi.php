@@ -27,27 +27,6 @@ if (mysqli_num_rows($results) != 0) {
 
     echo json_encode($resultsArray);
 
-/*    echo "<div class='table-responsive'>";
-    echo "<table class='table'>";
-    echo "<tr><th>Reference</th><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Pickup Suburb</th><th>Destination Suburb</th><th>Pickup Date (y-m-d h:m:s)</th></tr>";
-    $row = mysqli_fetch_row($results);
-    while ($row) {
-        echo "<tr><td>{$row[0]}</td>";
-        echo "<td>{$row[1]}</td>";
-        echo "<td>{$row[2]}</td>";
-        echo "<td>{$row[3]}</td>";
-        echo "<td>{$row[4]}</td>";
-        echo "<td>{$row[5]}</td>";
-        echo "<td>{$row[6]}</td>";
-        $row = mysqli_fetch_row($results);
-    }
-    echo "</table>";
-    echo "</div>";
-
-*/
-
-} else {
-    //echo "There are no bookings Available";
 }
 
 ?>

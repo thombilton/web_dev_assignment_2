@@ -5,6 +5,7 @@ include('../../private/connectDB.php');
 
 date_default_timezone_set("Pacific/Auckland");
 
+
 $id = $_POST['id'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
@@ -24,17 +25,15 @@ $sqlString = "INSERT INTO taxi VALUES(";
 
 //Conects to the database using the strings stored in private/connectDB.php
 $_DBCONNECTION = mysqli_connect("$dbAddr", "$dbUser", "$dbPw", "$dbName")
-or die(debug("unable to connect"));
+or die();
 
 //Tells PhP to use myt7427 as the database
 mysqli_select_db($_DBCONNECTION, "myt7427")
-or die(debug("unable to reach table"));
+or die();
 
 $querryString = "SHOW TABLES LIKE 'taxi'";
 $querry = mysqli_query($_DBCONNECTION, $querryString)
-or die (debug("Could not complete querry"));
-debug(mysqli_num_rows($querry));
-
+or die ();
 if (mysqli_num_rows($querry) == 0) {
     $querryString = "CREATE TABLE taxi (
         id VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -52,10 +51,9 @@ if (mysqli_num_rows($querry) == 0) {
         bookingTime VARCHAR(100) NOT NULL)";
 
     mysqli_query($_DBCONNECTION, $querryString)
-    or die(debug("Create table not successful"));
-    debug("Table Created");
+    or die();
 } else {
-    debug("No Need to create table");
+
 }
 
 $day = substr($pickupDate, 8, 2);
@@ -65,7 +63,14 @@ $year = substr($pickupDate, 0, 4);
 $dateTime = $year . '-' . $month . "-" . $day . " " . $pickupTime . ":00";
 
 
+do{
+    $id = $streetNo . rand(0,9999);
+}while (mysqli_num_rows(mysqli_query($_DBCONNECTION, "SELECT id FROM taxi WHERE id = $id") !=0));
+
+
 $sqlString = $sqlString . "'$id', '$fname', '$lname', '$pnumber', '$unit', '$streetNo', '$streetName', '$suburbPickUp', '$suburbDest', '$dateTime', '$status', '$bookingDate', '$bookingTime');";
 
 mysqli_query($_DBCONNECTION, $sqlString)
-or die(debug("unable to post to db"));
+or die();
+
+echo $id;
