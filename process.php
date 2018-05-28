@@ -3,10 +3,7 @@
 include "debug.php";
 include('../../private/connectDB.php');
 
-echo "working";
-
 date_default_timezone_set("Pacific/Auckland");
-
 
 $id = $_POST['id'];
 $fname = $_POST['fname'];
@@ -70,9 +67,5 @@ $dateTime = $year . '-' . $month . "-" . $day . " " . $pickupTime . ":00";
 
 $sqlString = $sqlString . "'$id', '$fname', '$lname', '$pnumber', '$unit', '$streetNo', '$streetName', '$suburbPickUp', '$suburbDest', '$dateTime', '$status', '$bookingDate', '$bookingTime');";
 
-echo($sqlString);
 mysqli_query($_DBCONNECTION, $sqlString)
 or die(debug("unable to post to db"));
-
-
-echo $fname;

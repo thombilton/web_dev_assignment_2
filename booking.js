@@ -72,12 +72,10 @@ function post() {
     hr.onreadystatechange = function (ev) {
         if (hr.readyState == 4 && hr.status == 200) {
             var returnData = hr.responseText;
-            document.getElementById("result").innerHTML = returnData;
         }
     };
 
     hr.send(vars);
-    document.getElementById("result").innerHTML = "processing...";
 
     var successMessage = "Thank you! Your booking reference number is " + id + ". You will be picked up in front of your provided address at: " + pickupTime + " on " + pickupDate + ".";
 
