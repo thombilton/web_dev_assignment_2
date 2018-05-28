@@ -1,8 +1,9 @@
-
 currentDate();
 currentTime();
 
-
+/*
+Generates the current date and formats it to the correct format to fill in the form.
+ */
 function currentDate() {
 
     var today = new Date();
@@ -24,7 +25,9 @@ function currentDate() {
     var dateInput = document.getElementById("pickupDate");
     dateInput.value = today;
 }
-
+/*
+Generates the current time and formats it so that it can be directly inserted into the form.
+ */
 function currentTime() {
 
     var today = new Date();

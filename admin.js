@@ -1,3 +1,9 @@
+/*
+Makes call to PHP server to retrieve taxi data.
+Modifies HTML to display the results in a table.
+ */
+var hasPressedAssign = false;
+
 function showTaxi() {
     var xmlhttp = new XMLHttpRequest()
 
@@ -36,7 +42,11 @@ function showTaxi() {
     xmlhttp.send();
 }
 
+/*
+Makes call to PHP server to assign a specified booking number
+ */
 function assignTaxi() {
+    hasPressedAssign = true;
     var userIn = document.getElementById("id").value;
     console.log(userIn);
     var hr = new XMLHttpRequest();
@@ -51,10 +61,19 @@ function assignTaxi() {
         if (hr.readyState == 4 && hr.status == 200) {
             var returnData = hr.responseText;
             document.getElementById("conf").innerHTML = returnData;
+            refresh();
         }
     };
 
     hr.send(vars);
 
+}
+/*
+Refreshes the booking table when a taxi is assigned.
+ */
+function refresh() {
+    if (hasPressedAssign == true) {
+        showTaxi()
+    }
 }
 

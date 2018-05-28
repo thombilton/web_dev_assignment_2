@@ -1,7 +1,15 @@
+/*
+Used to open the success modal
+ */
 function openModal() {
     $("#conf").modal();
 }
 
+/*
+This function used to validate the form input.
+It checks that the date entered is not before the current date (to the minute).
+Sends an alert if the date or time entered has already passed.
+ */
 function validateForm() {
 
     var pickupDate = document.getElementById("pickupDate").value;
@@ -40,7 +48,11 @@ function validateForm() {
 
 }
 
-
+/*
+Function used for posting the user input to the server.
+Gets data from the form/ formats and sends the POST XMLHTTPRequest to the server
+Also deals with the return data from the server. Displaying the success message.
+ */
 function post() {
 
     var hr = new XMLHttpRequest();
@@ -73,7 +85,6 @@ function post() {
     hr.onreadystatechange = function (ev) {
         if (hr.readyState == 4 && hr.status == 200) {
             returnData = hr.responseText;
-            //alert(hr.responseText);
             successMessage = "Thank you! Your booking reference number is " + hr.responseText + ". You will be picked up in front of your provided address at: " + pickupTime + " on " + pickupDate + ".";
             document.getElementById("successMessage").innerText = successMessage;
         }

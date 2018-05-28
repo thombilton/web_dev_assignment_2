@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * Queries the database to find bookings that are not assigned and are in the next 2 hours
+ * Returns a JSON string back that contains this info
+ */
 include "debug.php";
 include('../../private/connectDB.php');
 

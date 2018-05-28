@@ -1,4 +1,9 @@
 <?php
+/*
+ * File receives the users input string, searches the database and returns data
+ * If entry is not assigned the booking is assigned a taxi
+ * If already assigned or the booking doesnt exist a message is displayed.
+ */
 include "debug.php";
 include('../../private/connectDB.php');
 

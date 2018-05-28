@@ -1,4 +1,10 @@
 <?php
+/*
+ * Generates a random value for the taxi booking reference. Checks this against the DB, if it exists, the number is regenerated
+ * Gets the POST[] data from its global variable and inserts the data into the database
+ * If the database does not exist it is created.
+ * Returns the generated ID number
+ */
 
 include "debug.php";
 include('../../private/connectDB.php');
