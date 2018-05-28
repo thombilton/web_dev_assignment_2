@@ -2,7 +2,7 @@
 Makes call to PHP server to retrieve taxi data.
 Modifies HTML to display the results in a table.
  */
-var hasPressedAssign = false;
+var hasPressedView = false;
 
 function showTaxi() {
     var xmlhttp = new XMLHttpRequest()
@@ -14,6 +14,8 @@ function showTaxi() {
 
             console.log(this.responseText.length);
             console.log(this.responseText);
+            hasPressedView = true;
+
 
             if (this.responseText.length == 0) {
                 document.getElementById("table").innerHTML = "There are no bookings Available";
@@ -46,7 +48,6 @@ function showTaxi() {
 Makes call to PHP server to assign a specified booking number
  */
 function assignTaxi() {
-    hasPressedAssign = true;
     var userIn = document.getElementById("id").value;
     console.log(userIn);
     var hr = new XMLHttpRequest();
@@ -72,7 +73,7 @@ function assignTaxi() {
 Refreshes the booking table when a taxi is assigned.
  */
 function refresh() {
-    if (hasPressedAssign == true) {
+    if (hasPressedView === true) {
         showTaxi()
     }
 }
